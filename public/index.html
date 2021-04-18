@@ -42,40 +42,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="db.js"></script>
   <script src="index.js"></script>
-  <script>
-    const request = window.indexedDB.open("expenseLog", 1);
-
-    // create schema
-    request.onupgradeneeded = event => {
-      const db = event.target.result;
-      const expenseStore = db.createObjectStore("expenseList", {keyPath: "expenseID"});
-      expenseStore.createIndex("nameIndex", "name");
-      expenseStore.createIndex("valueIndex", "value");
-      expenseStore.createIndex("dateIndex", "date");
-    };
-
-    // create a transaction and get the objectStore and indexes
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction(["expenseList"], "readwrite");
-      const expenseStore = transaction.objectStore("expenseList");
-      const nameIndex = expenseStore.index("nameIndex");
-      const valueIndex = expenseStore.index("valueIndex");
-      const dateIndex = expenseStore.index("dateIndex");
-
-      // create a cursor to iterate through the objectStore
-      const getCursorRequest = expenseStore.openCurser();
-      getCursorRequest.onsuccess = e => {
-        const cursor = e.target.result;
-        if (cursor) {
-          console.log(cursor.value);
-          cursor.continue();
-        } else {
-          conosole.log("No more documents!");
-        }
-      };
-    };
-  </script>
 </body>
 </html>
