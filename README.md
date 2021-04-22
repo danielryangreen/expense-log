@@ -34,7 +34,7 @@
   - [Node.js](https://nodejs.org/en/)
   - [Express](https://expressjs.com/)
 
-  Front end code was provided by [Trilogy Education Services](https://trilogyed.com/).
+  Starter code was provided by [Trilogy Education Services](https://trilogyed.com/).
   ## License
   This project is covered under the MIT license.
   ## Contributing
